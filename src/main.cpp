@@ -16,22 +16,10 @@
 
 int main()
 {
-    // glfw: initialize and configure
     glfwInit();
-    glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
-    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
-    glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
-
-#ifdef __APPLE__
-    glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
-#endif
 
     GLFWwindow* window = InitWindow();
 
-    // capture and hide cursor (cursor locked)
-    glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_CAPTURED);
-
-    // glad: load all OpenGL function pointers
     if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
     {
         std::cout << "Failed to initialize GLAD" << std::endl;
@@ -44,7 +32,8 @@ int main()
     // build and compile our shader program
     Shader ourShader("assets/shaders/shader.vs", "assets/shaders/shader.fs");
 
-    float cubeVertices[] = {
+    float cubeVertices[] = 
+    {
         -0.5f, -0.5f, -0.5f,  0.0f, 0.0f,
          0.5f, -0.5f, -0.5f,  1.0f, 0.0f,
          0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
@@ -135,10 +124,8 @@ int main()
         glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, data);
         glGenerateMipmap(GL_TEXTURE_2D);
     }
-    else
-    {
-        std::cout << "Failed to load texture" << std::endl;
-    }
+    else{std::cout << "Failed to load texture" << std::endl;}
+
     stbi_image_free(data);
 
     ourShader.use();
