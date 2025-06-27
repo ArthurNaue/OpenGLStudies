@@ -1,6 +1,6 @@
 #include "models/models.hpp"
 
-Model::Model(ModelType model, glm::vec3 pos) : pos(pos)
+Model::Model(ModelType model, Texture tex, glm::vec3 pos) : tex(tex), pos(pos)
 {
 	switch(model)
 	{
@@ -24,6 +24,11 @@ float* Model::GetVertices(void)
 float Model::GetVerticesSize(void)
 {
 	return verticesSize;
+}
+
+Texture Model::GetTex(void)
+{
+	return tex;
 }
 
 glm::vec3 Model::GetPos(void)
@@ -79,3 +84,19 @@ float cube[] =
 size_t cubeSize = sizeof(cube);
 int cubesNumber = 0;
 std::vector<Model> cubesList;
+
+void DrawCubes(Shader shader)
+{
+	for(unsigned int i=0; i<cubesNumber; i++)
+	{
+		cubesList[i].GetTex().SetActiveTexture();
+
+		glm::mat4 model = glm::mat4(1.0f);
+		model = glm::translate(model, cubesList[i].GetPos());
+		float angle = 0.0f;
+		model = glm::rotate(model, glm::radians(angle), glm::vec3(1.0f, 0.3f, 0.5f));
+		shader.setMat4("model", model);
+
+		glDrawArrays(GL_TRIANGLES, 0, 36);
+	}
+}
