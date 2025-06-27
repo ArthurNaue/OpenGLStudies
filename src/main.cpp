@@ -34,7 +34,9 @@ int main()
     // build and compile our shader program
     Shader ourShader("assets/shaders/shader.vs", "assets/shaders/shader.fs");
 
-    unsigned int cubesNumber = 9;
+	Model cubeModel(CUBE);
+
+	int cubesNumber = 9;
 
     glm::vec3 cubePositions[] = {
         glm::vec3( 0.0f,  0.0f, 0.0f),
@@ -55,7 +57,7 @@ int main()
     glBindVertexArray(VAO);
 
     glBindBuffer(GL_ARRAY_BUFFER, VBO);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(cube), cube, GL_STATIC_DRAW);
+    glBufferData(GL_ARRAY_BUFFER, cubeModel.GetVerticesSize(), cubeModel.GetVertices(), GL_STATIC_DRAW);
 
     // position attribute
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)0);
