@@ -34,8 +34,6 @@ int main()
     // build and compile our shader program
     Shader ourShader("assets/shaders/shader.vs", "assets/shaders/shader.fs");
 
-	Model cubeModel(CUBE);
-
 	CreateCube(glm::vec3(0.0f, 0.0f, 0.0f));
 	CreateCube(glm::vec3(1.0f, 0.0f, 0.0f));
 

@@ -23,6 +23,7 @@ extern float cube[];
 extern size_t cubeSize;
 extern int cubesNumber;
 extern std::vector<glm::vec3> cubePositions;
+extern Model cubeModel;
 
 void CreateCube(glm::vec3 pos);
 
