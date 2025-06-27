@@ -2,10 +2,8 @@
 #define WINDOW_CONFIG_HPP
 
 #include <iostream>
-#include <GLFW/glfw3.h>
-#include <glm/glm.hpp>
-
 #include "camera/camera.hpp"
+#include <glm/glm.hpp>
 
 extern int SCREEN_WIDTH;
 extern int SCREEN_HEIGHT;
@@ -13,7 +11,6 @@ extern float lastX;
 extern float lastY;
 extern float yaw;
 extern float pitch;
-extern float fov;
 extern bool firstMouse;
 
 GLFWwindow* InitWindow(void);

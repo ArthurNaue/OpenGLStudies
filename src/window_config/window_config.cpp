@@ -6,7 +6,6 @@ float lastX;
 float lastY;
 float yaw = -90.0f;
 float pitch = 0.0f;
-float fov = 45.0f;
 bool firstMouse = true;
 
 GLFWwindow* InitWindow(void)

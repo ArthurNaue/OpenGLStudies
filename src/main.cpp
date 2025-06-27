@@ -35,7 +35,9 @@ int main()
     Shader ourShader("assets/shaders/shader.vs", "assets/shaders/shader.fs");
 
     Texture wallTex("assets/images/wallTexture.png");
+    Texture testTex("assets/images/testTexture.png");
     Model cube1(CUBE, wallTex, glm::vec3(0.0f, 0.0f, 0.0f));
+    Model cube2(CUBE, testTex, glm::vec3(1.0f, 0.0f, 0.0f));
 
     unsigned int VBO, VAO;
     glGenVertexArrays(1, &VAO);
@@ -68,14 +70,7 @@ int main()
 
         ourShader.use();
 
-        // update projection using current framebuffer size
-        int display_w, display_h;
-        glfwGetFramebufferSize(window, &display_w, &display_h);
-        glm::mat4 projection = glm::perspective(glm::radians(fov), (float)display_w / (float)display_h, 0.1f, 100.0f);
-        ourShader.setMat4("projection", projection);
-
-        glm::mat4 view = glm::lookAt(cameraPos, cameraPos + cameraFront, cameraUp);
-        ourShader.setMat4("view", view);
+	DrawCamera(window, ourShader);
 
         glBindVertexArray(VAO);
 
