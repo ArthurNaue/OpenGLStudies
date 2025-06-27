@@ -34,8 +34,8 @@ int main()
     // build and compile our shader program
     Shader ourShader("assets/shaders/shader.vs", "assets/shaders/shader.fs");
 
-	CreateCube(glm::vec3(0.0f, 0.0f, 0.0f));
-	CreateCube(glm::vec3(1.0f, 0.0f, 0.0f));
+    Model cube1(CUBE, glm::vec3(0.0f, 0.0f, 0.0f));
+    Model cube2(CUBE, glm::vec3(1.0f, 0.0f, 0.0f));
 
     unsigned int VBO, VAO;
     glGenVertexArrays(1, &VAO);
@@ -44,7 +44,7 @@ int main()
     glBindVertexArray(VAO);
 
     glBindBuffer(GL_ARRAY_BUFFER, VBO);
-    glBufferData(GL_ARRAY_BUFFER, cubeModel.GetVerticesSize(), cubeModel.GetVertices(), GL_STATIC_DRAW);
+    glBufferData(GL_ARRAY_BUFFER, cubesList[0].GetVerticesSize(), cubesList[0].GetVertices(), GL_STATIC_DRAW);
 
     // position attribute
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)0);
@@ -87,7 +87,7 @@ int main()
 		else{testTexture.SetActiveTexture();}
 
             glm::mat4 model = glm::mat4(1.0f);
-            model = glm::translate(model, cubePositions[i]);
+            model = glm::translate(model, cubesList[i].GetPos());
             float angle = 0.0f;
             model = glm::rotate(model, glm::radians(angle), glm::vec3(1.0f, 0.3f, 0.5f));
             ourShader.setMat4("model", model);

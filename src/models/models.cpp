@@ -1,6 +1,6 @@
 #include "models/models.hpp"
 
-Model::Model(ModelType model)
+Model::Model(ModelType model, glm::vec3 pos) : pos(pos)
 {
 	switch(model)
 	{
@@ -8,6 +8,8 @@ Model::Model(ModelType model)
 			{
 				vertices=cube;
 				verticesSize=cubeSize;
+				cubesNumber++;
+				cubesList.push_back(*this);
 				break;
 			}
 		default: break;
@@ -22,6 +24,11 @@ float* Model::GetVertices(void)
 float Model::GetVerticesSize(void)
 {
 	return verticesSize;
+}
+
+glm::vec3 Model::GetPos(void)
+{
+	return pos;
 }
 
 float cube[] =
@@ -71,11 +78,4 @@ float cube[] =
 
 size_t cubeSize = sizeof(cube);
 int cubesNumber = 0;
-std::vector<glm::vec3> cubePositions;
-Model cubeModel(CUBE);
-
-void CreateCube(glm::vec3 pos)
-{
-	cubePositions.push_back(pos);
-	cubesNumber++;
-}
+std::vector<Model> cubesList;
