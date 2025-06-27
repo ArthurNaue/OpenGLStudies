@@ -2,6 +2,8 @@
 #define MODELS_HPP
 
 #include <cstddef>
+#include <vector>
+#include <glm/glm.hpp>
 
 typedef enum ModelType{CUBE=0} ModelType;
 
@@ -19,5 +21,9 @@ class Model
 
 extern float cube[];
 extern size_t cubeSize;
+extern int cubesNumber;
+extern std::vector<glm::vec3> cubePositions;
+
+void CreateCube(glm::vec3 pos);
 
 #endif

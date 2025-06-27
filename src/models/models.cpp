@@ -70,3 +70,11 @@ float cube[] =
 };
 
 size_t cubeSize = sizeof(cube);
+int cubesNumber = 0;
+std::vector<glm::vec3> cubePositions;
+
+void CreateCube(glm::vec3 pos)
+{
+	cubePositions.push_back(pos);
+	cubesNumber++;
+}

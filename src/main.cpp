@@ -36,19 +36,8 @@ int main()
 
 	Model cubeModel(CUBE);
 
-	int cubesNumber = 9;
-
-    glm::vec3 cubePositions[] = {
-        glm::vec3( 0.0f,  0.0f, 0.0f),
-        glm::vec3( 0.0f,  0.0f, 1.0f),
-        glm::vec3( 0.0f,  0.0f, -1.0f),
-        glm::vec3( 0.0f,  2.0f, 0.0f),
-        glm::vec3( 0.0f,  2.0f, -1.0f),
-        glm::vec3( 0.0f,  2.0f, 1.0f),
-        glm::vec3( 1.0f,  0.0f, -1.0f),
-        glm::vec3( 2.0f,  0.0f, -1.0f),
-        glm::vec3( 0.0f,  1.0f, -1.0f)
-    };
+	CreateCube(glm::vec3(0.0f, 0.0f, 0.0f));
+	CreateCube(glm::vec3(1.0f, 0.0f, 0.0f));
 
     unsigned int VBO, VAO;
     glGenVertexArrays(1, &VAO);
