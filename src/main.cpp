@@ -10,6 +10,7 @@
 
 #include "shader/shader.hpp"
 #include "window_config/window_config.hpp"
+#include "texture/texture.hpp"
 #include "camera/camera.hpp"
 #include "user_input/user_input.hpp"
 #include "dt/dt.hpp"
@@ -107,29 +108,10 @@ int main()
     glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)(3 * sizeof(float)));
     glEnableVertexAttribArray(1);
 
-    // load and create a texture 
-    unsigned int wallTexture;
-    // texture 1
-    glGenTextures(1, &wallTexture);
-    glBindTexture(GL_TEXTURE_2D, wallTexture);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-    int width, height, nrChannels;
-    stbi_set_flip_vertically_on_load(true);
-    unsigned char *data = stbi_load("assets/images/wallTexture.png", &width, &height, &nrChannels, 0);
-    if (data)
-    {
-        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, data);
-        glGenerateMipmap(GL_TEXTURE_2D);
-    }
-    else{std::cout << "Failed to load texture" << std::endl;}
-
-    stbi_image_free(data);
+	Texture wallTexture("assets/images/wallTexture.png");
 
     ourShader.use();
-    ourShader.setInt("wallTexture", 0);
+    ourShader.setInt("texture", 0);
 
     // render loop
     while (!glfwWindowShouldClose(window))
@@ -141,8 +123,7 @@ int main()
         glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-        glActiveTexture(GL_TEXTURE0);
-        glBindTexture(GL_TEXTURE_2D, wallTexture);
+	wallTexture.SetActiveTexture();
 
         ourShader.use();
 
