@@ -34,7 +34,7 @@ int main()
 
     Texture wallTex("assets/images/wallTexture.png");
     Texture testTex("assets/images/testTexture.png");
-    CreateMultipleCubes(wallTex, glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(1.0f, 6.0f, 1.0f));
+    CreateMultipleCubes(wallTex, glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(5.0f, 6.0f, 1.0f));
 
     unsigned int VBO, VAO;
     glGenVertexArrays(1, &VAO);
@@ -50,8 +50,8 @@ int main()
     glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)(3 * sizeof(float)));
     glEnableVertexAttribArray(1);
 
-    ourShader.use();
-    ourShader.setInt("texture", 0);
+    ourShader.Use();
+    ourShader.SetInt("texture", 0);
 
     while (!glfwWindowShouldClose(window))
     {
@@ -62,7 +62,7 @@ int main()
         glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-        ourShader.use();
+        ourShader.Use();
 
 	DrawCamera(window, ourShader);
 

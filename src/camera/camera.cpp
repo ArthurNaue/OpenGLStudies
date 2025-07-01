@@ -10,8 +10,8 @@ void DrawCamera(GLFWwindow* window, Shader shader)
 	int displayWidth, displayHeight;
 	glfwGetFramebufferSize(window, &displayWidth, &displayHeight);
 	glm::mat4 projection = glm::perspective(glm::radians(fov), (float)displayWidth / (float)displayHeight, 0.1f, 100.0f);
-	shader.setMat4("projection", projection);
+	shader.SetMat4("projection", projection);
 
 	glm::mat4 view = glm::lookAt(cameraPos, cameraPos + cameraFront, cameraUp);
-	shader.setMat4("view", view);
+	shader.SetMat4("view", view);
 }

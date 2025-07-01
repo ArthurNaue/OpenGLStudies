@@ -111,7 +111,7 @@ void DrawCubes(Shader shader)
 		model = glm::translate(model, cubesList[i].GetPos());
 		float angle = 0.0f;
 		model = glm::rotate(model, glm::radians(angle), glm::vec3(1.0f, 0.3f, 0.5f));
-		shader.setMat4("model", model);
+		shader.SetMat4("model", model);
 
 		glDrawArrays(GL_TRIANGLES, 0, 36);
 	}

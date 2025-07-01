@@ -16,7 +16,6 @@ class Model
 	public:
 		Model(ModelType model, Texture tex, glm::vec3 pos);
 
-
 		float* GetVertices(void);
 		float GetVerticesSize(void);
 		glm::vec3 GetPos(void);
