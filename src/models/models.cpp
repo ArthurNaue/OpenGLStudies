@@ -85,13 +85,15 @@ size_t cubeSize = sizeof(cube);
 int cubesNumber = 0;
 std::vector<Model> cubesList;
 
-void CreateCubeSize(Texture tex, glm::vec3 pos, glm::vec3 size)
+void CreateMultipleCubes(Texture tex, glm::vec3 pos, glm::vec3 size)
 {
-	for(unsigned int x=0; x<size.x; x++)
+	size += pos;
+
+	for(unsigned int x=pos.x; x<size.x; x++)
 	{
-		for(unsigned int y=0; y<size.y; y++)
+		for(unsigned int y=pos.y; y<size.y; y++)
 		{
-			for(unsigned int z=0; z<size.z; z++)
+			for(unsigned int z=pos.z; z<size.z; z++)
 			{
 				Model(CUBE, tex, glm::vec3(x, y, z));
 			}

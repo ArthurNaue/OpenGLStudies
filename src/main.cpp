@@ -34,7 +34,7 @@ int main()
 
     Texture wallTex("assets/images/wallTexture.png");
     Texture testTex("assets/images/testTexture.png");
-    CreateCubeSize(wallTex, glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(3.0f, 6.0f, 1.0f));
+    CreateMultipleCubes(wallTex, glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(1.0f, 6.0f, 1.0f));
 
     unsigned int VBO, VAO;
     glGenVertexArrays(1, &VAO);
