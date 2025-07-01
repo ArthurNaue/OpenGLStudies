@@ -13,7 +13,7 @@ include_directories(libraries/glad/include)
 add_subdirectory(libraries/glfw)
 
 # GLAD como biblioteca estática (mantido separado)
-add_library(glad STATIC src/glad.c)
+add_library(glad STATIC src/glad/glad.c)
 target_include_directories(glad PUBLIC libraries/glad/include)
 
 # Busca automaticamente todos os .cpp e .c da pasta src
