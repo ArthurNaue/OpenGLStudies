@@ -28,16 +28,13 @@ int main()
         return -1;
     }
 
-    // configure global opengl state
     glEnable(GL_DEPTH_TEST);
 
-    // build and compile our shader program
     Shader ourShader("assets/shaders/shader.vs", "assets/shaders/shader.fs");
 
     Texture wallTex("assets/images/wallTexture.png");
     Texture testTex("assets/images/testTexture.png");
-    Model cube1(CUBE, wallTex, glm::vec3(0.0f, 0.0f, 0.0f));
-    Model cube2(CUBE, testTex, glm::vec3(1.0f, 0.0f, 0.0f));
+    CreateCubeSize(wallTex, glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(3.0f, 6.0f, 1.0f));
 
     unsigned int VBO, VAO;
     glGenVertexArrays(1, &VAO);
@@ -48,17 +45,14 @@ int main()
     glBindBuffer(GL_ARRAY_BUFFER, VBO);
     glBufferData(GL_ARRAY_BUFFER, cubesList[0].GetVerticesSize(), cubesList[0].GetVertices(), GL_STATIC_DRAW);
 
-    // position attribute
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)0);
     glEnableVertexAttribArray(0);
-    // texture coord attribute
     glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)(3 * sizeof(float)));
     glEnableVertexAttribArray(1);
 
     ourShader.use();
     ourShader.setInt("texture", 0);
 
-    // render loop
     while (!glfwWindowShouldClose(window))
     {
 	UpdateDt();

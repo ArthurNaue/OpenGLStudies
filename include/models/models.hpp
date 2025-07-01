@@ -33,6 +33,7 @@ extern size_t cubeSize;
 extern int cubesNumber;
 extern std::vector<Model> cubesList;
 
+void CreateCubeSize(Texture tex, glm::vec3 pos, glm::vec3 size);
 void DrawCubes(Shader shader);
 
 #endif
