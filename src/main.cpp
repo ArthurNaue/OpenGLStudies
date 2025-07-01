@@ -19,52 +19,52 @@
 
 int main()
 {
-    glfwInit();
+	glfwInit();
 
-    GLFWwindow* window = InitWindow();
+	GLFWwindow* window = InitWindow();
 
-    if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
-    {
-        std::cout << "Failed to initialize GLAD" << std::endl;
-        return -1;
-    }
+	if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
+	{
+		std::cout << "Failed to initialize GLAD" << std::endl;
+        	return -1;
+    	}
 
-    glEnable(GL_DEPTH_TEST);
+	glEnable(GL_DEPTH_TEST);
 
-    Shader ourShader("assets/shaders/shader.vs", "assets/shaders/shader.fs");
+	Shader ourShader("assets/shaders/shader.vs", "assets/shaders/shader.fs");
 
-    Texture wallTex("assets/images/wallTexture.png");
-    Texture testTex("assets/images/testTexture.png");
-    CreateMultipleCubes(wallTex, glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(1.0f, 1.0f, 1.0f));
+	Texture wallTex("assets/images/wallTexture.png");
+	Texture testTex("assets/images/testTexture.png");
+	CreateMultipleCubes(wallTex, glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(1.0f, 1.0f, 1.0f));
 
 	Renderer renderer;
 
-    ourShader.Use();
-    ourShader.SetInt("texture", 0);
+	ourShader.Use();
+	ourShader.SetInt("texture", 0);
 
-    while (!glfwWindowShouldClose(window))
-    {
-	UpdateDt();
+	while (!glfwWindowShouldClose(window))
+	{
+		UpdateDt();
 
-        processInput(window);
+		processInput(window);
 
-        glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
-        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+		glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
+		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-        ourShader.Use();
+		ourShader.Use();
 
-	DrawCamera(window, ourShader);
+		DrawCamera(window, ourShader);
 
-        renderer.Update();
+		renderer.Update();
+	
+		DrawCubes(ourShader);
 
-	DrawCubes(ourShader);
-
-        glfwSwapBuffers(window);
-        glfwPollEvents();
-    }
+		glfwSwapBuffers(window);
+		glfwPollEvents();
+	}
 
 	renderer.Delete();    
 
-    glfwTerminate();
-    return 0;
+	glfwTerminate();
+	return 0;
 }
