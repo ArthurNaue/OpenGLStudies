@@ -39,7 +39,7 @@ int main()
 	Renderer renderer;
 
 	Model cone(CONE, wallTex, glm::vec3(0.0f, 0.0f, 0.0f));
-	Model cube(CUBE, testTex, glm::vec3(2.0f, 0.0f, 0.0f));
+	Model cube(CUBE, testTex, glm::vec3(0.0f, -0.5f, 0.0f));
 
 	renderer.AddInstance(cone);
 	renderer.AddInstance(cube);
