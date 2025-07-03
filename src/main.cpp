@@ -35,9 +35,14 @@ int main()
 
 	Texture wallTex("assets/images/wallTexture.png");
 	Texture testTex("assets/images/testTexture.png");
-	CreateMultipleCubes(wallTex, glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(1.0f, 1.0f, 1.0f));
 
 	Renderer renderer;
+
+	Model cone(CONE, wallTex, glm::vec3(0.0f, 0.0f, 0.0f));
+	Model cube(CUBE, testTex, glm::vec3(2.0f, 0.0f, 0.0f));
+
+	renderer.AddInstance(cone);
+	renderer.AddInstance(cube);
 
 	ourShader.Use();
 	ourShader.SetInt("texture", 0);
@@ -55,9 +60,7 @@ int main()
 
 		DrawCamera(window, ourShader);
 
-		renderer.Update();
-	
-		DrawCubes(ourShader);
+		renderer.DrawAll(ourShader);	
 
 		glfwSwapBuffers(window);
 		glfwPollEvents();

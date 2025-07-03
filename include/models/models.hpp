@@ -9,30 +9,25 @@
 #include "shader/shader.hpp"
 #include "texture/texture.hpp"
 
-typedef enum ModelType{CUBE=0} ModelType;
+typedef enum ModelType{CUBE=0, CONE} ModelType;
 
 class Model
 {
 	public:
 		Model(ModelType model, Texture tex, glm::vec3 pos);
 
-		float* GetVertices(void);
-		float GetVerticesSize(void);
-		glm::vec3 GetPos(void);
+		ModelType GetType(void);
 		Texture GetTex(void);
+		glm::vec3 GetPos(void);
 	private:
-		float* vertices;
-		size_t verticesSize;
+		ModelType model;
 		Texture tex;
 		glm::vec3 pos;
 };
 
 extern float cube[];
 extern size_t cubeSize;
-extern int cubesNumber;
-extern std::vector<Model> cubesList;
 
-void CreateMultipleCubes(Texture tex, glm::vec3 pos, glm::vec3 size);
-void DrawCubes(Shader shader);
-
+extern float cone[];
+extern size_t coneSize;
 #endif
