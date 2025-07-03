@@ -8,6 +8,7 @@
 #include <glm/gtc/type_ptr.hpp>
 #include "shader/shader.hpp"
 #include "texture/texture.hpp"
+#include "models/blueprint/models_blueprint.hpp"
 
 typedef enum ModelType{CUBE=0, CONE} ModelType;
 
@@ -24,10 +25,4 @@ class Model
 		Texture tex;
 		glm::vec3 pos;
 };
-
-extern float cube[];
-extern size_t cubeSize;
-
-extern float cone[];
-extern size_t coneSize;
 #endif
